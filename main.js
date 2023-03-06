@@ -1,6 +1,7 @@
 const todoList = document.querySelector('.main__todo--list');
 const input = document.querySelector('.header form input');
 const itemLeft = document.querySelector('.main__todo--states .states__items-left span');
+
 let inputValue = input.value;
 let count = 0;
 itemLeft.innerHTML = count;
@@ -9,7 +10,8 @@ input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault();
         addTodo();
-        itemLeft.innerHTML = count++;
+        count++;
+        itemLeft.innerHTML = count;
     }
 })
 
@@ -29,11 +31,18 @@ function addTodo() {
 
         span.addEventListener('click', () => {
             li.remove();
-            itemLeft.innerHTML = count--;
+            count--;
+            itemLeft.innerHTML = count;
         });
 
         checkBox.addEventListener('click', () => {
+            if (li.classList.contains('done')) {
+                count++;
+            } else {
+                count--;
+            }
             li.classList.toggle('done');
+            itemLeft.innerHTML = count;
         })
 
         title.innerText = todoText;
