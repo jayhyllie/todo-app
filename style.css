@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+:root {
+    --bg-primary: hsl(220, 98%, 61%);
+    --bg-check: linear-gradient(#57ddff, #c058f3);
+
+    /* light mode */
+    --lm-veryLightGray: hsl(0, 0%, 98%);
+    --lm-veryLightGrayBlue: hsl(236, 33%, 92%);
+    --lm-lightGrayBlue: hsl(233, 11%, 84%);
+    --lm-darkGrayBlue: hsl(236, 9%, 61%);
+    --lm-veryDarkGrayBlue: hsl(235, 19%, 35%);
+
+    /* dark mode */
+    --dm-veryDarkBlue: hsl(235, 21%, 11%);
+    --dm-veryDarkDesBlue: hsl(235, 24%, 19%);
+    --dm-lightGrayBlue: hsl(234, 39%, 85%);
+    --dm-lightGrayBlueHover: hsl(236, 33%, 92%);
+    --dm-darkGrayBlue: hsl(234, 11%, 52%);
+    --dm-veryDarkGrayBlue-400: hsl(233, 14%, 35%);
+    --dm-veryDarkGrayBlue-700: hsl(237, 14%, 26%);
+}
+
+/* General */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+header {
+    height: 30vh;
+    display: grid;
+    place-content: center;
+    gap: 1em;
+    background-image: url('/images/bg-desktop-light.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+main {
+    display: grid;
+    place-content: center;
+    text-align: center;
+    gap: 3em;
+}
+
+ul[role='list'] {
+    list-style: none;
+}
+
+.states__filter li,
+button,
+.states__remove,
+.header img,
+.main__todo--list-item input,
+.main__todo--list-item h2,
+.main__todo--list-item span {
+    cursor: pointer;
+}
+
+input[type='checkbox'],
+input:focus-visible {
+    appearance: none;
+    outline: none;
+}
+@media (min-width: 35em) {
+    .states.mobile {
+        display: none;
+    }
+}
+
+/* Header */
+
+.header>* {
+    width: 30em;
+}
+
+.header .header--headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .header--headline h1 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #fff;
+    font-size: 3rem;
+}
+
+.header .header--headline img:not(.active) {
+    display: none;
+}
+
+.header form,
+.main__todo--list-item {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.header form .btn,
+.main__todo--list-item input {
+    width: 20px;
+    aspect-ratio: 1;
+    background: transparent;
+    border: 1px solid var(--lm-lightGrayBlue);
+    border-radius: 50%;
+}
+
+.header form #todo--add {
+    background-color: transparent;
+    border: none;
+}
+
+.header form #todo--add::placeholder,
+.main__todo--list-item h2 {
+    color: var(--lm-lightGrayBlue);
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.header form #todo--add:focus-visible {
+    border: none;
+    outline: none;
+}
+
+/* Main */
+
+.main__todo {
+    box-shadow: 0px 10px 3em 5px var(--lm-lightGrayBlue);
+    margin-top: -6%;
+}
+
+.main__todo>* {
+    width: 30em;
+}
+
+.main__todo,
+.main__todo--list {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.main__todo .main__todo--list-item {
+    color: var(--lm-darkGrayBlue);
+    position: relative;
+    transition: all 200ms ease-in-out;
+}
+
+.main__todo .main__todo--list-item:hover {
+    transform: scale(1.01);
+}
+
+.main__todo .main__todo--list-item h2 {
+    letter-spacing: 1px;
+}
+
+/* Checked todo */
+.main__todo .main__todo--list-item.done .added--todo-title {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+.main__todo .main__todo--list-item.done .added--todo {
+    background: var(--bg-check);
+    position: relative;
+}
+
+.main__todo .main__todo--list-item.done .added--todo::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8px;
+}
+
+.main__todo .main__todo--list-item .todo__remove {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(0, -50%);
+    opacity: 0;
+}
+
+.main__todo .main__todo--list-item:hover .todo__remove {
+    opacity: 1;
+}
+
+.main__todo .main__todo--states {
+    width: 100%;
+    padding: .5em 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--lm-lightGrayBlue);
+    font-size: .8rem;
+}
+
+.main__todo .main__todo--states .states__filter {
+    display: flex;
+    align-items: baseline;
+    gap: 1em;
+}
+
+.main__todo .main__todo--states .states__filter li:not(.active):hover {
+    color: var(--lm-veryDarkGrayBlue);
+}
+
+.main__todo .main__todo--states .states__remove:hover,
+.main__todo .main__todo--list-item:hover h2 {
+    color: var(--lm-veryDarkGrayBlue);
+}
+
+.main__todo .main__todo--states .states__filter li.active {
+    color: var(--bg-primary);
+}
+
+.main .main__todo--info {
+    color: var(--lm-darkGrayBlue);
+}
+
+/* DARK MODE */
+
+:has(.sun.active) .main__todo .main__todo--states .states__remove:hover,
+:has(.sun.active) .main__todo .main__todo--list-item:hover h2 {
+    color: var(--dm-lightGrayBlueHover);
+}
+
+:has(.sun.active) .main__todo .main__todo--states .states__filter li:not(.active):hover {
+    color: var(--dm-lightGrayBlueHover);
+}
+
+:has(.sun.active) .main__todo .main__todo--states {
+    color: var(--dm-darkGrayBlue);
+}
+
+:has(.sun.active) .main__todo .main__todo--list-item {
+    color: var(--dm-darkGrayBlue);
+    border-top: 1px solid var(--dm-veryDarkBlue);
+}
+
+:has(.sun.active) .main__todo,
+:has(.sun.active) .main__todo--list {
+    background-color: var(--dm-veryDarkDesBlue);
+}
+
+:has(.sun.active) .main__todo {
+    box-shadow: 0px 10px 3em 5px var(--dm-veryDarkDesBlue);
+}
+
+.header:has(.sun.active) form .btn {
+    border: 1px solid var(--dm-lightGrayBlue);
+}
+
+.header.header:has(.sun.active) form #todo--add {
+    color: var(--dm-lightGrayBlue);
+}
+
+.header.header:has(.sun.active) form #todo--add::placeholder,
+:has(.sun.active) .main__todo--list-item h2 {
+    color: var(--dm-darkGrayBlue);
+}
+
+:has(.sun.active) .main__todo .main__todo--states {
+    border-top: 1px solid var(--dm-veryDarkBlue);
+}
+.header:has(.sun.active) form,
+:has(.sun.active) .main__todo--list-item {
+    background-color: var(--dm-veryDarkDesBlue);
+}
+
+header:has(.sun.active) {
+    background-image: url(/images/bg-desktop-dark.jpg);
+}
+
+body:has(.sun.active) {
+    background-color: var(--dm-veryDarkGrayBlue-700);
+}
+
+
+/* MQ */
+
+@media (max-width: 30em) {
+    .header>* {
+        width: 20em;
+    }
+
+    .main>*,
+    .main__todo>* {
+        width: 90vw;
+    }
+
+    .main__todo {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .main__todo .main__todo--states .states__filter.desktop {
+        display: none;
+    }
+
+    .main__todo .main__todo--states {
+        padding: 2em 1.5em;
+        border-top: 1px solid var(--lm-lightGrayBlue);
+    }
+
+    .states.mobile {
+        margin-top: 2em;
+        background-color: #fff;
+        border-radius: .5em;
+    }
+    :has(.sun.active) .states.mobile {
+        background-color: var(--dm-veryDarkDesBlue);
+    }
+    .states.mobile .states__filter {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        padding: 2em;
+        gap: 2em;
+        box-shadow: 0px 10px 3em 5px var(--lm-lightGrayBlue);
+        border-radius: .5em;
+    }
+    :has(.sun.active) .states.mobile .states__filter {
+        box-shadow: 0px 10px 3em 5px var(--dm-veryDarkDesBlue);
+        overflow: hidden;
+    }
+    .main__todo .main__todo--list-item .todo__remove {
+        opacity: 1;
+    }
+    .states.mobile .states__filter li:not(.active):hover {
+        color: var(--lm-veryDarkGrayBlue);
+    }
+    
+    .states.mobile .states__remove:hover,
+    .main__todo .main__todo--list-item:hover h2 {
+        color: var(--lm-veryDarkGrayBlue);
+    }
+    
+    .states.mobile .states__filter li.active {
+        color: var(--bg-primary);
+    }
+}

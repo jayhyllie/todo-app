@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Todo app</title>
+</head>
+
+<body>
+  <header class="header">
+    <section class="header--headline">
+      <h1>Todo</h1>
+      <figure>
+        <img class="moon active" src="images/icon-moon.svg" alt="moon">
+        <img class="sun" src="images/icon-sun.svg" alt="sun">
+      </figure>
+    </section>
+    <form action="">
+      <button class="btn add"></button>
+      <input type="text" name="add-todo" id="todo--add" placeholder="Create a new todo...">
+    </form>
+  </header>
+  <main class="main">
+    <section class="main__todo">
+      <ul class="main__todo--list" role="list"></ul>
+      <section class="main__todo--states">
+        <div class="states__items-left"><span></span> items left</div>
+        <ul class="states__filter desktop" role="list">
+          <li class="states__filter--item active">All</li>
+          <li class="states__filter--item">Active</li>
+          <li class="states__filter--item">Completed</li>
+        </ul>
+        <div class="states__remove">Clear Completed</div>
+      </section>
+    </section>
+    <section class="states mobile">
+      <ul class="states__filter" role="list">
+        <li class="states__filter--item active">All</li>
+        <li class="states__filter--item">Active</li>
+        <li class="states__filter--item">Completed</li>
+      </ul>
+    </section>
+    <div class="main__todo--info">Drag and drop to reorder list</div>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
