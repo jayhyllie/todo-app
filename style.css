@@ -232,6 +232,7 @@ input:focus-visible {
 
 .main .main__todo--info {
     color: var(--lm-darkGrayBlue);
+    opacity: .2;
 }
 
 /* DARK MODE */
