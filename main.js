@@ -4,6 +4,7 @@ const itemLeft = document.querySelector('.main__todo--states .states__items-left
 const showAllButton = document.querySelector('#all');
 const showActiveButton = document.querySelector('#active');
 const showCompletedButton = document.querySelector('#completed');
+const clearCompletedButton = document.querySelector('.states__remove');
 
 let tasks = [];
 let count = 0;
@@ -70,6 +71,12 @@ function updateTaskList() {
             taskItem.classList.add('done');
         }
         taskList.appendChild(taskItem);
+
+        clearCompletedButton.addEventListener('click', () => {
+            if (task.completed) {
+                taskItem.remove();
+            }
+        })
     });
 }
 
